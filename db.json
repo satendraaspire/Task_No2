@@ -1,12 +1,4 @@
 {
   "concertBookingDetails": [
-    {
-      "firstName": "santedra",
-      "lastName": "singh",
-      "email": "sam@fgmail.com",
-      "phoneNumber": 9997678899,
-      "tickets": 5,
-      "id": 1
-    }
   ]
 }
