@@ -33,6 +33,9 @@
             <td>{{ data.tickets ? data.tickets : "-" }}</td>
           </tr>
         </tbody>
+        <div class="mt-2" *ngIf="!isAvailable">
+            <h3>Details Not Found</h3>
+        </div>
       </table>
     </div>
     <ng-template #notfound>

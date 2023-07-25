@@ -8,6 +8,7 @@ import { ConcertBookingService } from 'src/app/_service/concert-booking.service'
 })
 export class BookingDetailsComponent implements OnInit {
   public concertDetails!: any;
+  isAvailable!: boolean;
 
   constructor(public service: ConcertBookingService) {}
   ngOnInit(): void {
@@ -17,6 +18,13 @@ export class BookingDetailsComponent implements OnInit {
   public getConcertDetails() {
     this.service.getConcertDetails().subscribe((res) => {
       this.concertDetails = res;
+      let isPresent = this.concertDetails.some(function(el: { id: number; }){ return el.id === 1});
+      if(!isPresent){
+        this.isAvailable=false
+      }
+      else{
+        this.isAvailable=true
+      }
     });
   }
 
