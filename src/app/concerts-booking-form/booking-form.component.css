@@ -1,0 +1,24 @@
+.className{
+    margin: 19px 60px;
+    border: 1px solid;
+}
+.btn-class{
+    text-align: center;
+}
+.coustomClass{
+    position: absolute;
+    margin-top: 4%;
+    margin-left: 5%;
+}
+.custom_input{
+    width: 20% !important;
+    border: none !important;
+    padding-left: 27px;
+    font-weight: bold;
+    font-size: 25px;
+}
+.custom_line{
+    font-weight: bold;
+    font-size: 25px;
+    cursor: pointer;
+}

@@ -1,0 +1,42 @@
+<div class="card className mt-5">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-between align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link">
+          <strong class="text-dark">Concerts Booking Details</strong></a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    <div
+      class="table_class table-responsive"
+      *ngIf="concertDetails; else notfound"
+    >
+      <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Number of Tickets Booked</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of concertDetails">
+            <td>{{ fullName(data) }}</td>
+            <td>{{ data.email }}</td>
+            <td>{{ formatNumber(data) }}</td>
+            <td>{{ data.tickets ? data.tickets : "-" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #notfound>
+      <h3>Data not found</h3>
+    </ng-template>
+  </div>
+</div>
