@@ -41,6 +41,12 @@ export class BookingFormComponent implements OnInit {
       tickets: new FormControl(1, [Validators.required]),
     });
 
+    this.setTicketsValue();
+
+  }
+
+  setTicketsValue(){
+
     if (
       JSON.parse(`${sessionStorage.getItem('totalTicketsLeft')}`) === null ||
       undefined
@@ -59,6 +65,8 @@ export class BookingFormComponent implements OnInit {
 
   increment() {
     let countValue = this.concertBookingForm.get('tickets')?.value;
+
+    
     if (countValue === this.totalTickets) {
       this.toastr.info(
         ` Your booking could not be completed because there are only ${this.totalTickets} available tickets left due to limited seat availability`
@@ -106,6 +114,8 @@ export class BookingFormComponent implements OnInit {
       'totalTicketsLeft',
       JSON.stringify(totalTicketsLeft)
     );
+    
+    this.setTicketsValue();
   }
   restoringForm() {
     this.viewBookingDetails?.getConcertDetails();
