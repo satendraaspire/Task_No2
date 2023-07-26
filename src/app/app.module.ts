@@ -22,6 +22,7 @@ import { BookingFormComponent } from './concerts-booking-form/booking-form.compo
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ConcertBookingService } from './_service/concert-booking.service';
 import { BookingDetailsComponent } from './concerts-booking-form/booking-details/booking-details.component';
+import { MaskNumberDirective } from './_directive/mask-number.directive';
 
 
 
@@ -30,7 +31,8 @@ import { BookingDetailsComponent } from './concerts-booking-form/booking-details
     AppComponent,
     BookingFormComponent,
     PageNotFoundComponent,
-    BookingDetailsComponent
+    BookingDetailsComponent,
+    MaskNumberDirective
   ],
   imports: [
     BrowserModule,

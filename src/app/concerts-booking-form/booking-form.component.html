@@ -23,23 +23,25 @@
             formControlName="firstName"
             [ngClass]="{
               'is-invalid':
-                (f['firstName'].dirty ||
-                  f['firstName'].touched ||
+                (formControlsHandle['firstName'].dirty ||
+                  formControlsHandle['firstName'].touched ||
                   isSubmitted) &&
-                f['firstName'].errors
+                formControlsHandle['firstName'].errors
             }"
           />
           <div
             *ngIf="
-              f['firstName'].errors &&
-              (f['firstName'].dirty || f['firstName'].touched || isSubmitted)
+              formControlsHandle['firstName'].errors &&
+              (formControlsHandle['firstName'].dirty ||
+                formControlsHandle['firstName'].touched ||
+                isSubmitted)
             "
             class="invalid-feedback"
           >
-            <div *ngIf="f['firstName'].errors['required']">
+            <div *ngIf="formControlsHandle['firstName'].errors['required']">
               First Name is required
             </div>
-            <div *ngIf="f['firstName'].errors['pattern']">
+            <div *ngIf="formControlsHandle['firstName'].errors['pattern']">
               Only Accepts Alphabets
             </div>
           </div>
@@ -53,21 +55,25 @@
             formControlName="lastName"
             [ngClass]="{
               'is-invalid':
-                (f['lastName'].dirty || f['lastName'].touched || isSubmitted) &&
-                f['lastName'].errors
+                (formControlsHandle['lastName'].dirty ||
+                  formControlsHandle['lastName'].touched ||
+                  isSubmitted) &&
+                formControlsHandle['lastName'].errors
             }"
           />
           <div
             *ngIf="
-              f['lastName'].errors &&
-              (f['lastName'].dirty || f['lastName'].touched || isSubmitted)
+              formControlsHandle['lastName'].errors &&
+              (formControlsHandle['lastName'].dirty ||
+                formControlsHandle['lastName'].touched ||
+                isSubmitted)
             "
             class="invalid-feedback"
           >
-            <div *ngIf="f['lastName'].errors['required']">
+            <div *ngIf="formControlsHandle['lastName'].errors['required']">
               Last Name is required
             </div>
-            <div *ngIf="f['lastName'].errors['pattern']">
+            <div *ngIf="formControlsHandle['lastName'].errors['pattern']">
               Only Accepts Alphabets
             </div>
           </div>
@@ -81,20 +87,25 @@
             formControlName="email"
             [ngClass]="{
               'is-invalid':
-                (f['email'].dirty || f['email'].touched || isSubmitted) &&
-                f['email'].errors
+                (formControlsHandle['email'].dirty ||
+                  formControlsHandle['email'].touched ||
+                  isSubmitted) &&
+                formControlsHandle['email'].errors
             }"
           />
           <div
             *ngIf="
-              f['email'].errors &&
-              (f['email'].dirty || f['email'].touched || isSubmitted)
+              formControlsHandle['email'].errors &&
+              (formControlsHandle['email'].dirty ||
+                formControlsHandle['email'].touched ||
+                isSubmitted)
             "
             class="invalid-feedback"
           >
             <div
               *ngIf="
-                f['email'].errors['email'] || f['email'].errors['required']
+                formControlsHandle['email'].errors['email'] ||
+                formControlsHandle['email'].errors['required']
               "
             >
               Invalid Email
@@ -107,31 +118,32 @@
           <div class="d-flex">
             <button type="" class="btn border">+91</button>
             <input
-              type="number"
+              appMaskNumber
+              type="text"
               class="form-control"
               placeholder="Enter Your Number"
               formControlName="phoneNumber"
               [ngClass]="{
                 'is-invalid':
-                  (f['phoneNumber'].dirty ||
-                    f['phoneNumber'].touched ||
+                  (formControlsHandle['phoneNumber'].dirty ||
+                    formControlsHandle['phoneNumber'].touched ||
                     isSubmitted) &&
-                  f['phoneNumber'].errors
+                  formControlsHandle['phoneNumber'].errors
               }"
             />
-            <div
+            <div 
               *ngIf="
-                f['phoneNumber'].errors &&
-                (f['phoneNumber'].dirty ||
-                  f['phoneNumber'].touched ||
+                formControlsHandle['phoneNumber'].errors &&
+                (formControlsHandle['phoneNumber'].dirty ||
+                  formControlsHandle['phoneNumber'].touched ||
                   isSubmitted)
               "
               class="invalid-feedback coustomClass"
             >
-              <div *ngIf="f['phoneNumber'].errors['required']">
+              <div *ngIf="formControlsHandle['phoneNumber'].errors['required']">
                 Phone Number is required
               </div>
-              <div *ngIf="f['phoneNumber'].errors['pattern']">
+              <div *ngIf="formControlsHandle['phoneNumber'].errors['pattern'] || formControlsHandle['phoneNumber'].errors['minlength']">
                 Minimun 10 Digit Required
               </div>
             </div>
@@ -149,7 +161,30 @@
               class="form-control custom_input"
               placeholder=""
               formControlName="tickets"
+              (ngModelChange)="getTicketsValue($event)"
+              [ngClass]="{
+                'is-invalid':
+                  (formControlsHandle['tickets'].dirty ||
+                    formControlsHandle['tickets'].touched ||
+                    isSubmitted) &&
+                  formControlsHandle['tickets'].errors
+              }"
+            
             />
+ 
+          <div
+            *ngIf="
+              formControlsHandle['tickets'].errors &&
+              (formControlsHandle['tickets'].dirty ||
+                formControlsHandle['tickets'].touched ||
+                isSubmitted)
+            "
+            class="invalid-feedback coustomInputClass"
+          >
+            <div *ngIf="formControlsHandle['tickets'].errors['required']">
+              Atleast one ticket required
+            </div>
+          </div>
 
             <p class="custom_line btn" (click)="increment()">
               <strong>+</strong>
@@ -157,7 +192,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-3 btn-class">
+      <div class="mt-5 btn-class">
         <button class="btn btn-secondary" (click)="onSubmit()">
           Book Your Seat
         </button>

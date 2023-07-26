@@ -1,24 +1,28 @@
-.className{
-    margin: 19px 60px;
-    border: 1px solid;
+.className {
+  margin: 19px 60px;
+  border: 1px solid;
 }
-.btn-class{
-    text-align: center;
+.btn-class {
+  text-align: center;
 }
-.coustomClass{
+.coustomClass {
+  position: absolute;
+  margin-top: 4%;
+  margin-left: 5%;
+}
+.coustomInputClass{
     position: absolute;
     margin-top: 4%;
-    margin-left: 5%;
+    margin-left: 1%;
 }
-.custom_input{
-    width: 20% !important;
-    border: none !important;
-    padding-left: 27px;
-    font-weight: bold;
-    font-size: 25px;
+.custom_input {
+  width: 31% !important;
+  padding-left: 31px;
+  font-weight: bold;
+  font-size: 18px;
 }
-.custom_line{
-    font-weight: bold;
-    font-size: 25px;
-    cursor: pointer;
+.custom_line {
+  font-weight: bold;
+  font-size: 17px;
+  cursor: pointer;
 }

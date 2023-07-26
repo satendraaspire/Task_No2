@@ -8,22 +8,25 @@ import { ConcertBookingService } from 'src/app/_service/concert-booking.service'
 })
 export class BookingDetailsComponent implements OnInit {
   public concertDetails!: any;
-  isAvailable!: boolean;
+  public isAvailable!: boolean;
 
-  constructor(public service: ConcertBookingService) {}
-  ngOnInit(): void {
+  constructor(private service: ConcertBookingService) {}
+  public ngOnInit(): void {
     this.getConcertDetails();
   }
 
   public getConcertDetails() {
     this.service.getConcertDetails().subscribe((res) => {
       this.concertDetails = res;
-      let isPresent = this.concertDetails.some(function(el: { id: number; }){ return el.id === 1});
-      if(!isPresent){
-        this.isAvailable=false
-      }
-      else{
-        this.isAvailable=true
+      let isPresent = this.concertDetails.some(function (value: {
+        id: number;
+      }) {
+        return value.id === 1;
+      });
+      if (!isPresent) {
+        this.isAvailable = false;
+      } else {
+        this.isAvailable = true;
       }
     });
   }
@@ -35,7 +38,7 @@ export class BookingDetailsComponent implements OnInit {
   public formatNumber(value: any) {
     const f_val = value.phoneNumber.toString().replace(/\D[^\.]/g, '');
     const firstFiveDigit = f_val.slice(0, 5);
-    const lastDigit = f_val.slice(5);
+    const lastDigit = f_val.slice(4);
     return `+91 ${firstFiveDigit}-${lastDigit}`;
   }
 }

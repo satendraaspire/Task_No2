@@ -1,9 +1,10 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ToastrService } from 'ngx-toastr';
 import { ConcertBookingService } from '../_service/concert-booking.service';
 import { BookingDetailsComponent } from './booking-details/booking-details.component';
+import { tickets } from './concert-booking.constant';
 
 @Component({
   selector: 'app-booking-form',
@@ -11,9 +12,10 @@ import { BookingDetailsComponent } from './booking-details/booking-details.compo
   styleUrls: ['./booking-form.component.css'],
 })
 export class BookingFormComponent implements OnInit {
-  concertBookingForm!: FormGroup;
-  isSubmitted = false;
-  totalTickets = 50;
+  public concertBookingForm!: FormGroup;
+  public isSubmitted = false;
+  public totalTickets!: number;
+  public tickets = tickets;
 
   @ViewChild('viewBookingDetails') viewBookingDetails!: BookingDetailsComponent;
 
@@ -22,7 +24,7 @@ export class BookingFormComponent implements OnInit {
     private service: ConcertBookingService
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.concertBookingForm = new FormGroup({
       firstName: new FormControl('', [
         Validators.required,
@@ -35,23 +37,22 @@ export class BookingFormComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phoneNumber: new FormControl('', [
         Validators.required,
-        Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$'),
-        Validators.maxLength(10),
+        Validators.pattern('[0-9-]+'),
+        Validators.maxLength(12),
+        Validators.minLength(11),
       ]),
-      tickets: new FormControl(1, [Validators.required]),
+      tickets: new FormControl(1, [
+        Validators.required,
+        Validators.pattern('^[0-9]{1,2}?$'),
+      ]),
     });
 
     this.setTicketsValue();
-
   }
 
-  setTicketsValue(){
-
-    if (
-      JSON.parse(`${sessionStorage.getItem('totalTicketsLeft')}`) === null ||
-      undefined
-    ) {
-      this.totalTickets = 50;
+  public setTicketsValue() {
+    if (sessionStorage.getItem('totalTicketsLeft') === null || undefined) {
+      this.totalTickets = tickets.totalValue;
     } else {
       this.totalTickets = JSON.parse(
         `${sessionStorage.getItem('totalTicketsLeft')}`
@@ -59,14 +60,46 @@ export class BookingFormComponent implements OnInit {
     }
   }
 
-  get f() {
+  public get formControlsHandle() {
     return this.concertBookingForm['controls'];
   }
 
-  increment() {
+  getTicketsValue(value: number) {
+    let ticketValue = String(value)
+      .split('')
+      .map((num) => {
+        return Number(num);
+      });
+
+    if (value > this.totalTickets) {
+      this.toastr.info(
+        ` Your booking could not be completed because there are only ${this.totalTickets} available tickets left due to limited seat availability`
+      );
+    }
+
+    if (value >= tickets.inputRange && tickets.lastLimit > value) {
+      ticketValue.pop();
+      const value = ticketValue.toString().replace(',', '');
+      this.concertBookingForm.patchValue({
+        tickets: value,
+      });
+    }
+
+    if (
+      value >= tickets.lastLimit &&
+      ticketValue.length >= tickets.inputValue
+    ) {
+      ticketValue.pop();
+      const value = ticketValue.toString().replace(',', '');
+      this.concertBookingForm.patchValue({
+        tickets: value,
+      });
+    }
+  }
+
+  public increment() {
     let countValue = this.concertBookingForm.get('tickets')?.value;
 
-    
     if (countValue === this.totalTickets) {
       this.toastr.info(
         ` Your booking could not be completed because there are only ${this.totalTickets} available tickets left due to limited seat availability`
@@ -78,9 +111,10 @@ export class BookingFormComponent implements OnInit {
       });
     }
   }
-  decrement() {
+
+  public decrement() {
     let countValue = this.concertBookingForm.get('tickets')?.value;
-    if (countValue === 1) {
+    if (countValue === tickets.countValue) {
       this.toastr.info('Minimun One Ticket Required');
     } else {
       countValue--;
@@ -90,13 +124,16 @@ export class BookingFormComponent implements OnInit {
     }
   }
 
-  onSubmit() {
-    if (this.totalTickets === 0) {
+  public onSubmit() {
+    console.log(this.concertBookingForm);
+
+    if (this.totalTickets === tickets.initialVaule) {
       this.toastr.info('All seats are booked');
     } else if (!this.concertBookingForm.valid) {
       this.isSubmitted = true;
       this.toastr.error('Invalid Form');
     } else {
+      this.isSubmitted = false;
       const data = {
         ...this.concertBookingForm.value,
       };
@@ -108,16 +145,12 @@ export class BookingFormComponent implements OnInit {
     }
   }
 
-  storingValueInSession(value: number) {
-    const totalTicketsLeft = this.totalTickets - value;
-    sessionStorage.setItem(
-      'totalTicketsLeft',
-      JSON.stringify(totalTicketsLeft)
-    );
-    
+  public storingValueInSession(value: number) {
+    let totalTicketsLeft = this.totalTickets - value;
+    sessionStorage.setItem('totalTicketsLeft', totalTicketsLeft.toString());
     this.setTicketsValue();
   }
-  restoringForm() {
+  public restoringForm() {
     this.viewBookingDetails?.getConcertDetails();
     this.concertBookingForm.reset();
     this.concertBookingForm.patchValue({
