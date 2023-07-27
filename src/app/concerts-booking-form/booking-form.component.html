@@ -118,11 +118,11 @@
           <div class="d-flex">
             <button type="" class="btn border">+91</button>
             <input
+              appMaskNumber
               type="text"
               class="form-control"
               placeholder="Enter Your Number"
               formControlName="phoneNumber"
-              (keyup)="getInputNumber($event)"
               [ngClass]="{
                 'is-invalid':
                   (formControlsHandle['phoneNumber'].dirty ||

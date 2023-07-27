@@ -1,0 +1,51 @@
+<div class="card className mt-5">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-between align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link">
+          <strong class="text-dark">Client information</strong></a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    <div
+      class="table_class table-responsive"
+      *ngIf="clientsList; else notfound"
+    >
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Client Name</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Department</th>
+            <th scope="col">Linked Programs</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let data of clientsList; let i = index"
+            [ngStyle]="{
+              'background-color': getLinkedPrograms(data.id)
+                ? getLinkedPrograms(data.id)
+                : 'red'
+            }"
+          >
+            <td>{{ data.name }}</td>
+            <td>{{ getDesignation(data.id) }}</td>
+            <td>{{ getDepartment(data.id) }}</td>
+            <td>
+              <pre>{{ getLinkedPrograms(data.id) }}</pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #notfound>
+      <h3>Data not found</h3>
+    </ng-template>
+  </div>
+</div>

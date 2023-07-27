@@ -1,0 +1,18 @@
+.className {
+  margin: 19px 60px;
+  border: 1px solid;
+}
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-family: var(--bs-font-sans-serif);
+  font-size: inherit;
+}
+tr {
+  background: cadetblue;
+}
+.table {
+  --bs-table-bg: auto !important;
+}

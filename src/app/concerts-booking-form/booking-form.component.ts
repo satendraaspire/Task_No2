@@ -170,6 +170,7 @@ export class BookingFormComponent implements OnInit {
       this.isSubmitted = true;
       this.toastr.error('Invalid Form');
     } else {
+      this.handleNumberPattern(this.concertBookingForm.value.phoneNumber);
       this.isSubmitted = false;
       const data = {
         ...this.concertBookingForm.value,
@@ -179,6 +180,25 @@ export class BookingFormComponent implements OnInit {
         this.storingValueInSession(this.concertBookingForm.value.tickets);
         this.restoringForm();
       });
+    }
+  }
+
+  public handleNumberPattern(value: string) {
+    let phoneNumberValue = value.split('').map((number: any) => {
+      return number;
+    });
+
+    if (phoneNumberValue.length >= 12) {
+      let newValue = phoneNumberValue.slice(
+        tickets.initialValue,
+        tickets.rangeValue
+      );
+      const maxValue = newValue.toString().replaceAll(',', '');
+      this.concertBookingForm.patchValue({
+        phoneNumber: maxValue,
+      });
+    } else {
+      return;
     }
   }
 

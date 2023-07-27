@@ -15,10 +15,10 @@ export class ConcertBookingService {
   public addBookingForConcert(
     data: BookingConcert
   ): Observable<BookingConcert> {
-    return this.http.post<BookingConcert>(`${concertAPI}`, data);
+    return this.http.post<BookingConcert>(`${concertAPI}concertBookingDetails`, data);
   }
 
   public getConcertDetails(): Observable<BookingConcert> {
-    return this.http.get<BookingConcert>(`${concertAPI}`);
+    return this.http.get<BookingConcert>(`${concertAPI}concertBookingDetails`);
   }
 }

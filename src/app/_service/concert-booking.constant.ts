@@ -1,4 +1,4 @@
-export const concertAPI = `http://localhost:4000/concertBookingDetails`;
+export const concertAPI = `http://localhost:4000/`;
 
 export const mockData = {
   firstName: 'satendra',
