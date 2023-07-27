@@ -43,7 +43,7 @@ export class BookingFormComponent implements OnInit {
       ]),
       tickets: new FormControl(1, [
         Validators.required,
-        Validators.pattern('^[0-9]{1,2}?$'),
+        Validators.pattern('^[1-9][0-9]*$'),
       ]),
     });
 
@@ -64,42 +64,80 @@ export class BookingFormComponent implements OnInit {
     return this.concertBookingForm['controls'];
   }
 
-  getTicketsValue(value: number) {
-    let ticketValue = String(value)
-      .split('')
-      .map((num) => {
-        return Number(num);
+  public getInputNumber(value: any) {
+    if (value != null) {
+      let phoneNumberValue = value.split('').map((number: any) => {
+        return number;
       });
+      if (phoneNumberValue.length == tickets.midLength) {
+        phoneNumberValue.push('-');
+        const updatedValue = phoneNumberValue.toString().replaceAll(',', '');
+        this.concertBookingForm.patchValue({
+          phoneNumber: updatedValue,
+        });
+      }
 
-    if (value > this.totalTickets) {
-      this.toastr.info(
-        ` Your booking could not be completed because there are only ${this.totalTickets} available tickets left due to limited seat availability`
-      );
+      if (phoneNumberValue.length >= tickets.lastLength) {
+        let newValue = phoneNumberValue.slice(
+          tickets.initialValue,
+          tickets.rangeValue
+        );
+        const maxValue = newValue.toString().replaceAll(',', '');
+        this.concertBookingForm.patchValue({
+          phoneNumber: maxValue,
+        });
+      }
     }
+  }
 
-    if (value >= tickets.inputRange && tickets.lastLimit > value) {
-      ticketValue.pop();
-      const value = ticketValue.toString().replace(',', '');
-      this.concertBookingForm.patchValue({
-        tickets: value,
-      });
-    }
+  public getTicketsValue(value: number) {
+    if (value != null) {
+      let ticketValue = String(value)
+        .split('')
+        .map((num: any) => {
+          return num;
+        });
 
-    if (
-      value >= tickets.lastLimit &&
-      ticketValue.length >= tickets.inputValue
-    ) {
-      ticketValue.pop();
-      const value = ticketValue.toString().replace(',', '');
-      this.concertBookingForm.patchValue({
-        tickets: value,
-      });
+      const initialItem = value.toString().charAt(tickets.initialValue);
+      if (ticketValue.length > 2 && initialItem == tickets.initialNumber) {
+        ticketValue.pop();
+        const value = ticketValue.toString().replace(',', '');
+        this.concertBookingForm.patchValue({
+          tickets: value,
+        });
+      }
+
+      if (value > this.totalTickets) {
+        ticketValue.pop();
+        const value = ticketValue.toString().replace(',', '');
+        this.concertBookingForm.patchValue({
+          tickets: value,
+        });
+        this.toastr.info(
+          ` Your booking could not be completed because there are only ${this.totalTickets} available tickets left due to limited seat availability`
+        );
+      }
+
+      if (value >= tickets.inputRange && tickets.lastLimit > value) {
+        ticketValue.pop();
+        const value = ticketValue.toString().replace(',', '');
+        this.concertBookingForm.patchValue({
+          tickets: value,
+        });
+      }
+
+      if (ticketValue.length >= tickets.inputValue) {
+        ticketValue.pop();
+        const value = ticketValue.toString().replace(',', '');
+        this.concertBookingForm.patchValue({
+          tickets: value,
+        });
+      }
     }
   }
 
   public increment() {
     let countValue = this.concertBookingForm.get('tickets')?.value;
-
     if (countValue === this.totalTickets) {
       this.toastr.info(
         ` Your booking could not be completed because there are only ${this.totalTickets} available tickets left due to limited seat availability`
@@ -125,9 +163,7 @@ export class BookingFormComponent implements OnInit {
   }
 
   public onSubmit() {
-    console.log(this.concertBookingForm);
-
-    if (this.totalTickets === tickets.initialVaule) {
+    if (this.totalTickets === tickets.initialValue) {
       this.toastr.info('All seats are booked');
     } else if (!this.concertBookingForm.valid) {
       this.isSubmitted = true;

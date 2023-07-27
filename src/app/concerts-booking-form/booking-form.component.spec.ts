@@ -33,7 +33,7 @@ describe('BookingFormComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      declarations: [BookingFormComponent,BookingDetailsComponent],
+      declarations: [BookingFormComponent, BookingDetailsComponent],
       imports: [
         BrowserModule,
         FormsModule,
@@ -56,7 +56,6 @@ describe('BookingFormComponent', () => {
 
     fixture = TestBed.createComponent(BookingFormComponent);
     component = fixture.componentInstance;
-
   });
 
   it('should create', () => {
@@ -71,38 +70,29 @@ describe('BookingFormComponent', () => {
 
   describe('when setTicketsValue value is called', () => {
     it('setTicketsValue makes expected calls', () => {
-      component.setTicketsValue()
+      component.setTicketsValue();
       expect(component.setTicketsValue).toBeTruthy();
     });
   });
 
   describe('when getTicketsValue value is called', () => {
     it('getTicketsValue makes expected calls', () => {
-      component.getTicketsValue(1)
+      component.getTicketsValue(1);
       expect(component.getTicketsValue).toBeTruthy();
     });
   });
 
   describe('when increment value is called', () => {
     it('increment makes expected calls', () => {
-
-      component.increment()
-      expect(component.increment).toBeTruthy();
+      component.increment();
+      expect(component.increment).toBeUndefined();
     });
   });
 
   describe('when onSubmit value is called', () => {
     it('onSubmit makes expected calls', () => {
-      component.onSubmit()
-      expect(component.onSubmit).toBeTruthy();
+      component.onSubmit();
+      expect(component.onSubmit).toBeUndefined();
     });
   });
-
-
-
-
-
-
-
-
 });

@@ -12,7 +12,9 @@ export class ConcertBookingService {
 
   constructor(private http: HttpClient) {}
 
-  public addBookingForConcert(data: BookingConcert): Observable<BookingConcert> {
+  public addBookingForConcert(
+    data: BookingConcert
+  ): Observable<BookingConcert> {
     return this.http.post<BookingConcert>(`${concertAPI}`, data);
   }
 

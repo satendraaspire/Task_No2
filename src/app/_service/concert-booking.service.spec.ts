@@ -4,7 +4,7 @@ import { ConcertBookingService } from './concert-booking.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MockService } from 'ng-mocks';
-import {mockData} from './concert-booking.constant'
+import { mockData } from './concert-booking.constant';
 
 describe('ConcertBookingService', () => {
   let service: ConcertBookingService;
@@ -15,7 +15,6 @@ describe('ConcertBookingService', () => {
       post: (_searchByState: any, _array: any, _data: any) => ({}),
     });
 
-    
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
       providers: [
@@ -27,8 +26,6 @@ describe('ConcertBookingService', () => {
       ],
     });
     service = TestBed.inject(ConcertBookingService);
-
-
   });
 
   it('should be created', () => {
@@ -55,9 +52,4 @@ describe('ConcertBookingService', () => {
       expect(service.addBookingForConcert).toHaveBeenCalled();
     });
   });
-
-
-
-
-
 });

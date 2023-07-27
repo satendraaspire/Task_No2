@@ -6,4 +6,4 @@ export const mockData = {
   email: 'sam@gmail.com',
   phoneNumber: 99975-35597,
   tickets: 6,
-}
+};

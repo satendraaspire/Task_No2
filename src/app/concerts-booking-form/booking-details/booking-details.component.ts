@@ -11,6 +11,7 @@ export class BookingDetailsComponent implements OnInit {
   public isAvailable!: boolean;
 
   constructor(private service: ConcertBookingService) {}
+
   public ngOnInit(): void {
     this.getConcertDetails();
   }
@@ -36,9 +37,9 @@ export class BookingDetailsComponent implements OnInit {
   }
 
   public formatNumber(value: any) {
-    const f_val = value.phoneNumber.toString().replace(/\D[^\.]/g, '');
-    const firstFiveDigit = f_val.slice(0, 5);
-    const lastDigit = f_val.slice(4);
+    const formatvalue = value.phoneNumber.toString().replace(/\D[^\.]/g, '');
+    const firstFiveDigit = formatvalue.slice(0, 5);
+    const lastDigit = formatvalue.slice(4);
     return `+91 ${firstFiveDigit}-${lastDigit}`;
   }
 }
