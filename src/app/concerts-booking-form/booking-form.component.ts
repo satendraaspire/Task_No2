@@ -64,33 +64,6 @@ export class BookingFormComponent implements OnInit {
     return this.concertBookingForm['controls'];
   }
 
-  public getInputNumber(event: any) {
-    let value = event.target.value;
-    if (value != null) {
-      let phoneNumberValue = value.split('').map((number: any) => {
-        return number;
-      });
-      if (phoneNumberValue.length == tickets.midLength) {
-        phoneNumberValue.push('-');
-        const updatedValue = phoneNumberValue.toString().replaceAll(',', '');
-        this.concertBookingForm.patchValue({
-          phoneNumber: updatedValue,
-        });
-      }
-
-      if (phoneNumberValue.length >= tickets.lastLength) {
-        let newValue = phoneNumberValue.slice(
-          tickets.initialValue,
-          tickets.rangeValue
-        );
-        const maxValue = newValue.toString().replaceAll(',', '');
-        this.concertBookingForm.patchValue({
-          phoneNumber: maxValue,
-        });
-      }
-    }
-  }
-
   public getTicketsValue(value: number) {
     if (value != null) {
       let ticketValue = String(value)

@@ -47,7 +47,7 @@ describe('ConcertBookingService', () => {
       const mockServiceSub = TestBed.inject(MockService);
       spyOn(mockServiceSub, 'get').and.callThrough();
       spyOn(service, 'addBookingForConcert').and.callThrough();
-      const mockValue = mockData;
+      const mockValue: any = mockData;
       service.addBookingForConcert(mockValue);
       expect(service.addBookingForConcert).toHaveBeenCalled();
     });

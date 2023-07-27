@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 // Toastr imports
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,8 +13,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 // HTTP client import
-import {HttpClientModule} from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BookingFormComponent } from './concerts-booking-form/booking-form.component';
@@ -24,8 +22,6 @@ import { ConcertBookingService } from './_service/concert-booking.service';
 import { BookingDetailsComponent } from './concerts-booking-form/booking-details/booking-details.component';
 import { MaskNumberDirective } from './_directive/mask-number.directive';
 import { ClientFormationModule } from './TASK_NO3/client-information/client-formation.module';
-
-
 
 @NgModule({
   declarations: [
@@ -43,11 +39,9 @@ import { ClientFormationModule } from './TASK_NO3/client-information/client-form
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ClientFormationModule
+    ClientFormationModule,
   ],
-  providers: [
-    ConcertBookingService
-  ],
-  bootstrap: [AppComponent]
+  providers: [ConcertBookingService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

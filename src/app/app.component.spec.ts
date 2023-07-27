@@ -10,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('AppComponent', () => {
-
   const activatedRouteStub = () => ({
     params: { pipe: () => ({ subscribe: (f: (arg0: {}) => any) => f({}) }) },
   });
@@ -28,9 +27,7 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent],
       imports: [
         BrowserModule,
         ToastrModule.forRoot(),
@@ -41,7 +38,10 @@ describe('AppComponent', () => {
         HttpClientModule,
       ],
       providers: [
-        { provide: ConcertBookingService, useFactory: ConcertBookingServiceSub },
+        {
+          provide: ConcertBookingService,
+          useFactory: ConcertBookingServiceSub,
+        },
         { provide: ActivatedRoute, useFactory: activatedRouteStub },
         { provide: Router, useFactory: routerStub },
       ],
@@ -64,6 +64,8 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toBeUndefined();
+    expect(
+      compiled.querySelector('.content span')?.textContent
+    ).toBeUndefined();
   });
 });

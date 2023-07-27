@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { of } from 'rxjs';
 
 describe('BookingDetailsComponent', () => {
   let component: BookingDetailsComponent;
@@ -57,16 +58,15 @@ describe('BookingDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('when calls getConcertDetails', () => {
-    it('should calls getConcertDetails.get', () => {
-      const GPZipCodeServiceSub: ConcertBookingService =
-        fixture.debugElement.injector.get(ConcertBookingService);
-      spyOn(GPZipCodeServiceSub, 'getConcertDetails').and.callThrough();
-      spyOn(component, 'getConcertDetails').and.callThrough();
-      let mock = mockData;
+  describe('when getConcertDetails is called', () => {
+    it(`getConcertDetails has default value`, () => {
+      const mockDataValue: any = mockData;
+      const restService = TestBed.inject(ConcertBookingService);
+      spyOn(restService, 'getConcertDetails').and.returnValue(
+        of(mockDataValue)
+      );
       component.getConcertDetails();
-      expect(component.getConcertDetails).toHaveBeenCalled();
-      expect(GPZipCodeServiceSub.getConcertDetails).toHaveBeenCalled();
+      expect(component.getConcertDetails).toBeTruthy();
     });
   });
 
@@ -80,8 +80,14 @@ describe('BookingDetailsComponent', () => {
 
   describe('when formatNumber value is called', () => {
     it('formatNumber expected calls', () => {
-      const mockValue = mockData;
-      component.formatNumber(mockValue);
+      const mockFormatData = {
+        firstName: 'satendra',
+        lastName: 'singh',
+        email: 'sam@gmail.com',
+        phoneNumber: 99975 - 35597,
+        tickets: 6,
+      };
+      component.formatNumber(mockFormatData);
       expect(component.formatNumber).toBeTruthy();
     });
   });

@@ -100,7 +100,7 @@ describe('ClientInformationComponent', () => {
       );
 
       component.getClientsInformation();
-      expect(component.clientsList).toBe([]);
+      expect(component.clientsList).toEqual(clientsListMock);
     });
   });
 });

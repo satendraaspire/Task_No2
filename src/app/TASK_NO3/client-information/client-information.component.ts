@@ -17,7 +17,6 @@ export class ClientInformationComponent implements OnInit {
   public clientProgram!: ClientInformationType[];
   public clientLinkedProgram!: LinkedProgramType[];
   public clientDetails!: ClientDetailsType[];
-  public isValid = false;
 
   constructor(private clientService: ClientInformationService) {}
 

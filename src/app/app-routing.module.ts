@@ -6,31 +6,30 @@ import { ClientInformationComponent } from './TASK_NO3/client-information/client
 
 const routes: Routes = [
   {
-    path:'',
+    path: '',
     redirectTo: 'concert-booking-form',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
-    path:'concert-booking-form',
+    path: 'concert-booking-form',
     component: BookingFormComponent,
-    title: 'Form Booking'
+    title: 'Form Booking',
   },
   {
-    path:'client-information',
-    component:ClientInformationComponent,
-    title:'client-onformation'
+    path: 'client-information',
+    component: ClientInformationComponent,
+    title: 'client-onformation',
   },
 
   {
     path: '**',
-    component:PageNotFoundComponent,
-    title: 'Page Not Found'
-  }
-
+    component: PageNotFoundComponent,
+    title: 'Page Not Found',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
