@@ -64,7 +64,8 @@ export class BookingFormComponent implements OnInit {
     return this.concertBookingForm['controls'];
   }
 
-  public getInputNumber(value: any) {
+  public getInputNumber(event: any) {
+    let value = event.target.value;
     if (value != null) {
       let phoneNumberValue = value.split('').map((number: any) => {
         return number;
