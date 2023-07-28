@@ -43,7 +43,7 @@
           <tr
             *ngFor="let data of clientsList; let i = index"
             [ngStyle]="{
-              'background-color': getLinkedPrograms(data.id)! ? 'gray' : 'red'
+              'background-color': getColorStyle(data.id)
             }"
           >
             <td>{{ data.name }}</td>

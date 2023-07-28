@@ -75,4 +75,8 @@ export class ClientInformationComponent implements OnInit {
 
     return programListArray.join('\n');
   }
+
+  public getColorStyle(id:number){
+    return this.getLinkedPrograms(id)! ? 'gray' : 'red'
+  }
 }
