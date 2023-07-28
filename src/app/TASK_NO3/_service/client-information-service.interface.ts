@@ -1,15 +1,15 @@
 export interface ClientInformationType {
-  id: number | string;
+  id: number;
   name: string;
 }
 
 export interface LinkedProgramType {
-  clientId: number | string;
-  programId: number | string;
+  clientId: number;
+  programId: number;
 }
 
 export interface ClientDetailsType {
-  clientId: number | string;
+  clientId: number;
   designation: string;
   department: string;
 }

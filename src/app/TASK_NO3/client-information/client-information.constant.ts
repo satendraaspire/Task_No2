@@ -114,3 +114,10 @@ export const clientDetails = [
     department: 'Testing',
   },
 ];
+
+export const DesignationValues = [
+  'Engineer',
+  'Sr. Engineer',
+  'Lead',
+  'Manager',
+];

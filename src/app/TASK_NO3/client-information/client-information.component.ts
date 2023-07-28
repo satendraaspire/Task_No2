@@ -6,6 +6,7 @@ import {
   ClientInformationType,
   LinkedProgramType,
 } from 'c:/PIP_Task/task_No2/src/app/TASK_NO3/_service/client-information-service.interface';
+import { ReusableService } from '../_reusable-service/reusable-service.service';
 
 @Component({
   selector: 'app-client-information',
@@ -18,7 +19,10 @@ export class ClientInformationComponent implements OnInit {
   public clientLinkedProgram!: LinkedProgramType[];
   public clientDetails!: ClientDetailsType[];
 
-  constructor(private clientService: ClientInformationService) {}
+  constructor(
+    private clientService: ClientInformationService,
+    private reusableService: ReusableService
+  ) {}
 
   public ngOnInit(): void {
     this.getClientsInformation();
@@ -36,31 +40,39 @@ export class ClientInformationComponent implements OnInit {
         this.clientProgram = clientProgram;
         this.clientLinkedProgram = clientLinkedProgram;
         this.clientDetails = clientDetails;
+        this.reusableService.setProgramData(this.clientProgram);
       }
     );
   }
 
-  public getDesignation(id: number | string) {
+  public getDesignation(id: number) {
     const seletedValue = this.clientDetails.find(
-      (value) => value.clientId == id
+      (value) => value.clientId === id
     );
     return seletedValue?.designation;
   }
 
-  public getDepartment(id: number | string) {
+  public getDepartment(id: number) {
     const seletedValue = this.clientDetails.find(
-      (value) => value.clientId == id
+      (value) => value.clientId === id
     );
     return seletedValue?.department;
   }
 
   public getLinkedPrograms(id: string | number) {
-    let programListArray = [];
-    for (const element of this.clientLinkedProgram) {
-      if (element.clientId == id) {
-        programListArray.push('ProgramId' + element.programId);
+    let programListArray: string[] = [];
+    this.clientLinkedProgram.filter((item) => {
+      if (item.clientId === id) {
+        this.clientProgram.map((value) => {
+          if (item.programId === value.id) {
+            return programListArray.push(value.name);
+          } else {
+            return;
+          }
+        });
       }
-    }
+    });
+
     return programListArray.join('\n');
   }
 }

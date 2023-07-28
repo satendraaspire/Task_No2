@@ -16,3 +16,6 @@ tr {
 .table {
   --bs-table-bg: auto !important;
 }
+.active{
+  background-color: red;
+}

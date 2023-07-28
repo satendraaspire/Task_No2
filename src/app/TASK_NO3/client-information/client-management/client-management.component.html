@@ -1,0 +1,154 @@
+<div class="card className">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-between align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link">
+          <strong class="text-dark">Client Management</strong></a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="clientManagementForm">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <label for="clientName" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Your Name"
+            formControlName="clientName"
+            [ngClass]="{
+              'is-invalid':
+                (formControlsHandle['clientName'].dirty ||
+                  formControlsHandle['clientName'].touched ||
+                  isSubmitted) &&
+                formControlsHandle['clientName'].errors
+            }"
+          />
+          <div
+            *ngIf="
+              formControlsHandle['clientName'].errors &&
+              (formControlsHandle['clientName'].dirty ||
+                formControlsHandle['clientName'].touched ||
+                isSubmitted)
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="formControlsHandle['clientName'].errors['required']">
+              Name is required
+            </div>
+            <div *ngIf="formControlsHandle['clientName'].errors['pattern']">
+              Only Accepts Alphabets
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <label for="lName" class="form-label">Department</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Your Department"
+            formControlName="department"
+            [ngClass]="{
+              'is-invalid':
+                (formControlsHandle['department'].dirty ||
+                  formControlsHandle['department'].touched ||
+                  isSubmitted) &&
+                formControlsHandle['department'].errors
+            }"
+          />
+          <div
+            *ngIf="
+              formControlsHandle['department'].errors &&
+              (formControlsHandle['department'].dirty ||
+                formControlsHandle['department'].touched ||
+                isSubmitted)
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="formControlsHandle['department'].errors['required']">
+              Department is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <label for="designation" class="form-label">Designation</label>
+          <select
+            class="form-control"
+            formControlName="designation"
+            [ngClass]="{
+              'is-invalid':
+                (formControlsHandle['designation'].dirty ||
+                  formControlsHandle['designation'].touched ||
+                  isSubmitted) &&
+                formControlsHandle['designation'].errors
+            }"
+          >
+            <option value="" disabled>Select your Designation</option>
+            <option *ngFor="let client of designationValues" [ngValue]="client">
+              {{ client }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              formControlsHandle['designation'].errors &&
+              (formControlsHandle['designation'].dirty ||
+                formControlsHandle['designation'].touched ||
+                isSubmitted)
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="formControlsHandle['designation'].errors['required']">
+              Designation is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 mt-3">
+          <label for="Programs" class="form-label">Programs</label>
+          <select
+            class="form-control"
+            formControlName="programs"
+            multiple
+            [ngClass]="{
+              'is-invalid':
+                (formControlsHandle['programs'].dirty ||
+                  formControlsHandle['programs'].touched ||
+                  isSubmitted) &&
+                formControlsHandle['programs'].errors
+            }"
+          >
+            >
+            <option
+              *ngFor="let client of programDropDown"
+              [ngValue]="client.id"
+            >
+              {{ client.name }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              formControlsHandle['programs'].errors &&
+              (formControlsHandle['programs'].dirty ||
+                formControlsHandle['programs'].touched ||
+                isSubmitted)
+            "
+            class="invalid-feedback"
+          >
+            <div *ngIf="formControlsHandle['programs'].errors['required']">
+              Programs is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 btn-class">
+        <button class="btn btn-dark" (click)="onSubmit()">Add Client</button>
+      </div>
+    </form>
+  </div>
+</div>

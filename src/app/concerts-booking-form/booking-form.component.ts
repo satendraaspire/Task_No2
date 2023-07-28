@@ -54,9 +54,7 @@ export class BookingFormComponent implements OnInit {
     if (sessionStorage.getItem('totalTicketsLeft') === null || undefined) {
       this.totalTickets = tickets.totalValue;
     } else {
-      this.totalTickets = JSON.parse(
-        `${sessionStorage.getItem('totalTicketsLeft')}`
-      );
+      this.totalTickets = +sessionStorage.getItem('totalTicketsLeft')!;
     }
   }
 
@@ -92,8 +90,7 @@ export class BookingFormComponent implements OnInit {
         );
       }
 
-      if (value >= tickets.inputRange && tickets.lastLimit > value) {
-        ticketValue.pop();
+      if (value > tickets.inputRange && tickets.lastLimit > value) {
         const value = ticketValue.toString().replace(',', '');
         this.concertBookingForm.patchValue({
           tickets: value,

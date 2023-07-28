@@ -22,6 +22,8 @@ import { ConcertBookingService } from './_service/concert-booking.service';
 import { BookingDetailsComponent } from './concerts-booking-form/booking-details/booking-details.component';
 import { MaskNumberDirective } from './_directive/mask-number.directive';
 import { ClientFormationModule } from './TASK_NO3/client-information/client-formation.module';
+import { ClientManagementComponent } from './TASK_NO3/client-information/client-management/client-management.component';
+import { ProgramManagementComponent } from './TASK_NO3/client-information/program-management/program-management.component';
 
 @NgModule({
   declarations: [
@@ -30,16 +32,18 @@ import { ClientFormationModule } from './TASK_NO3/client-information/client-form
     PageNotFoundComponent,
     BookingDetailsComponent,
     MaskNumberDirective,
+    ClientManagementComponent,
+    ProgramManagementComponent,
   ],
   imports: [
     BrowserModule,
-    ToastrModule.forRoot(),
-    BrowserAnimationsModule,
     AppRoutingModule,
     RouterModule,
     ReactiveFormsModule,
     HttpClientModule,
     ClientFormationModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
   ],
   providers: [ConcertBookingService],
   bootstrap: [AppComponent],

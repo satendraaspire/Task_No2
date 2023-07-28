@@ -16,17 +16,52 @@ export class ClientInformationService {
 
   constructor(private http: HttpClient) {}
 
+  public createClients(
+    data: ClientInformationType
+  ): Observable<ClientInformationType[]> {
+    return this.http.post<ClientInformationType[]>(
+      `${concertAPI}clients`,
+      data
+    );
+  }
+
   public getClients(): Observable<ClientInformationType[]> {
     return this.http.get<ClientInformationType[]>(`${concertAPI}clients`);
+  }
+
+  public createProgram(
+    data: ClientInformationType
+  ): Observable<ClientInformationType[]> {
+    return this.http.post<ClientInformationType[]>(
+      `${concertAPI}programs`,
+      data
+    );
   }
 
   public getClientsProgram(): Observable<ClientInformationType[]> {
     return this.http.get<ClientInformationType[]>(`${concertAPI}programs`);
   }
 
+  public createLinkedProgram(
+    data: LinkedProgramType
+  ): Observable<LinkedProgramType[]> {
+    return this.http.post<LinkedProgramType[]>(
+      `${concertAPI}clientLinkedPrograms`,
+      data
+    );
+  }
   public getLinkedProgram(): Observable<LinkedProgramType[]> {
     return this.http.get<LinkedProgramType[]>(
       `${concertAPI}clientLinkedPrograms`
+    );
+  }
+
+  public createClientDetails(
+    data: ClientDetailsType
+  ): Observable<ClientDetailsType[]> {
+    return this.http.post<ClientDetailsType[]>(
+      `${concertAPI}clientDetails`,
+      data
     );
   }
 
