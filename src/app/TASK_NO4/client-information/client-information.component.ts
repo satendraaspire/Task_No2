@@ -1,27 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { ClientInformationService } from '../_service/client-information.service';
-import { forkJoin } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { Store } from '@ngrx/store';
 import {
-  ClientDetailsType,
   ClientInformationType,
   LinkedProgramType,
-} from 'c:/PIP_Task/task_No2/src/app/TASK_NO3/_service/client-information-service.interface';
-import { ReusableService } from '../_reusable-service/reusable-service.service';
+  ClientDetailsType,
+} from './client-information.interface';
 
 @Component({
   selector: 'app-client-information',
   templateUrl: './client-information.component.html',
   styleUrls: ['./client-information.component.css'],
 })
-export class ClientInformationFirstComponent implements OnInit {
+export class ClientInformationComponent implements OnInit {
   public clientsList!: ClientInformationType[];
   public clientProgram!: ClientInformationType[];
   public clientLinkedProgram!: LinkedProgramType[];
   public clientDetails!: ClientDetailsType[];
 
   constructor(
-    private clientService: ClientInformationService,
-    private reusableService: ReusableService
+    private store: Store<{
+      clientData: ClientInformationType[];
+      clientDetailsData: ClientDetailsType[];
+      linkedProgramData: LinkedProgramType[];
+      programData: ClientInformationType[];
+    }>
   ) {}
 
   public ngOnInit(): void {
@@ -29,18 +32,17 @@ export class ClientInformationFirstComponent implements OnInit {
   }
 
   public getClientsInformation() {
-    forkJoin([
-      this.clientService.getClients(),
-      this.clientService.getClientsProgram(),
-      this.clientService.getLinkedProgram(),
-      this.clientService.getClientDetails(),
+    combineLatest([
+      this.store.select('clientData'),
+      this.store.select('clientDetailsData'),
+      this.store.select('linkedProgramData'),
+      this.store.select('programData'),
     ]).subscribe(
-      ([clientsList, clientProgram, clientLinkedProgram, clientDetails]) => {
+      ([clientsList, clientLinkedProgram, clientDetails, clientProgram]) => {
         this.clientsList = clientsList;
+        this.clientLinkedProgram = clientDetails;
+        this.clientDetails = clientLinkedProgram;
         this.clientProgram = clientProgram;
-        this.clientLinkedProgram = clientLinkedProgram;
-        this.clientDetails = clientDetails;
-        this.reusableService.setProgramData(this.clientProgram);
       }
     );
   }

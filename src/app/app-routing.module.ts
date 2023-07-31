@@ -2,9 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookingFormComponent } from './concerts-booking-form/booking-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { ClientInformationComponent } from './TASK_NO3/client-information/client-information.component';
-import { ClientManagementComponent } from './TASK_NO3/client-information/client-management/client-management.component';
-import { ProgramManagementComponent } from './TASK_NO3/client-information/program-management/program-management.component';
+import { ClientManagementComponent } from './TASK_NO4/client-information/client-management/client-management.component';
+import { ClientInformationComponent } from './TASK_NO4/client-information/client-information.component';
+import { ProgramManagementComponent } from './TASK_NO4/client-information/program-management/program-management.component';
+import { ClientInformationFirstComponent } from './TASK_NO3/client-information/client-information.component';
+import { ClientManagementFirstComponent } from './TASK_NO3/client-information/client-management/client-management.component';
+import { ProgramManagementFirstComponent } from './TASK_NO3/client-information/program-management/program-management.component';
 
 const routes: Routes = [
   {
@@ -18,21 +21,36 @@ const routes: Routes = [
     title: 'Form Booking',
   },
   {
+    path: 'client-informations',
+    component: ClientInformationFirstComponent,
+    title: 'client-onformations',
+  },
+  {
+    path: 'client-managements',
+    component: ClientManagementFirstComponent,
+    title: 'Client Managements',
+  },
+  {
+    path: 'program-managements',
+    component: ProgramManagementFirstComponent,
+    title: 'Program Managements',
+  },
+
+  {
     path: 'client-information',
     component: ClientInformationComponent,
     title: 'client-onformation',
   },
   {
-    path:'client-management',
+    path: 'client-management',
     component: ClientManagementComponent,
-    title:'Client Management'
+    title: 'Client Management',
   },
   {
-    path:'program-management',
+    path: 'program-management',
     component: ProgramManagementComponent,
-    title:'Program Management'
+    title: 'Program Management',
   },
-
   {
     path: '**',
     component: PageNotFoundComponent,

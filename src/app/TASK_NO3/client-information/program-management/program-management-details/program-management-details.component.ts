@@ -5,11 +5,11 @@ import { ClientInformationService } from 'src/app/TASK_NO3/_service/client-infor
 import { tickets } from 'src/app/concerts-booking-form/concert-booking.constant';
 
 @Component({
-  selector: 'app-program-management-details',
+  selector: 'app-program-management-detail',
   templateUrl: './program-management-details.component.html',
   styleUrls: ['./program-management-details.component.css'],
 })
-export class ProgramManagementDetailsComponent implements OnInit {
+export class ProgramManagementFirstDetailComponent implements OnInit {
   public programDetails!: ClientInformationType[];
   public ticketsValues = tickets;
 

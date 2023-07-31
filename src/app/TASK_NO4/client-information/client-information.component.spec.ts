@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClientInformationFirstComponent } from './client-information.component';
+import { ClientInformationComponent } from './client-information.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { ClientInformationService } from '../_service/client-information.service';
@@ -13,8 +13,8 @@ import {
 import { of } from 'rxjs';
 
 describe('ClientInformationComponent', () => {
-  let component: ClientInformationFirstComponent;
-  let fixture: ComponentFixture<ClientInformationFirstComponent>;
+  let component: ClientInformationComponent;
+  let fixture: ComponentFixture<ClientInformationComponent>;
 
   beforeEach(async () => {
     const ClientInformationServiceSub = () => ({
@@ -33,7 +33,7 @@ describe('ClientInformationComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      declarations: [ClientInformationFirstComponent],
+      declarations: [ClientInformationComponent],
       imports: [HttpClientModule],
       providers: [
         HttpClient,
@@ -46,7 +46,7 @@ describe('ClientInformationComponent', () => {
       ],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ClientInformationFirstComponent);
+    fixture = TestBed.createComponent(ClientInformationComponent);
     component = fixture.componentInstance;
 
     component.clientsList = clients;

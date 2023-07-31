@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgramManagementDetailsComponent } from './program-management-details.component';
+import { ProgramManagementFirstDetailComponent } from './program-management-details.component';
 
-describe('ProgramManagementDetailsComponent', () => {
-  let component: ProgramManagementDetailsComponent;
-  let fixture: ComponentFixture<ProgramManagementDetailsComponent>;
+describe('ProgramManagementFirstDetailsComponent', () => {
+  let component: ProgramManagementFirstDetailComponent;
+  let fixture: ComponentFixture<ProgramManagementFirstDetailComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProgramManagementDetailsComponent],
+      declarations: [ProgramManagementFirstDetailComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProgramManagementDetailsComponent);
+    fixture = TestBed.createComponent(ProgramManagementFirstDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

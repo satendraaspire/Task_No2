@@ -1,33 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ClientInformationService } from '../../_service/client-information.service';
-import {
-  ClientDetailsType,
-  ClientInformationType,
-} from '../../_service/client-information-service.interface';
 import { ToastrService } from 'ngx-toastr';
 import { DesignationValues } from '../client-information.constant';
 import { Router } from '@angular/router';
-import { ReusableService } from '../../_reusable-service/reusable-service.service';
 import { random } from 'src/app/concerts-booking-form/concert-booking.constant';
+import {
+  setClientData,
+  setClientDetails,
+  setLinkedProgram,
+} from '../store/actions/client-data.actions';
+import { Store } from '@ngrx/store';
+import {
+  ClientDetailsType,
+  ClientInformationType,
+  LinkedProgramType,
+} from '../client-information.interface';
 
 @Component({
   selector: 'app-client-management',
   templateUrl: './client-management.component.html',
   styleUrls: ['./client-management.component.css'],
 })
-export class ClientManagementFirstComponent implements OnInit {
+export class ClientManagementComponent implements OnInit {
   public clientManagementForm!: FormGroup;
-  public designationDropDown!: ClientDetailsType[];
   public programDropDown!: ClientInformationType[];
-
   public designationValues = DesignationValues;
 
   constructor(
-    private service: ClientInformationService,
     private toastr: ToastrService,
     private router: Router,
-    private reusableService: ReusableService
+    private store: Store<{
+      clientData: ClientInformationType[];
+      clientDetailsData: ClientDetailsType[];
+      linkedProgramData: LinkedProgramType[];
+      programData: ClientInformationType[];
+    }>
   ) {}
 
   public ngOnInit(): void {
@@ -44,13 +51,11 @@ export class ClientManagementFirstComponent implements OnInit {
     this.clientDetails();
   }
   public clientDetails() {
-    if (this.reusableService.getProgramData() === undefined) {
-      this.service.getClientsProgram().subscribe((response) => {
-        this.programDropDown = response;
+    this.store
+      .select((store) => store.programData)
+      .subscribe((res) => {
+        this.programDropDown = res;
       });
-    } else {
-      this.programDropDown = this.reusableService.getProgramData();
-    }
   }
 
   public get formControlsHandle() {
@@ -68,17 +73,18 @@ export class ClientManagementFirstComponent implements OnInit {
       this.createClientDetails(autoID, designation, department);
       this.createLinkedProgram(autoID, programs);
       this.toastr.success('Submit Successfully');
-      this.router.navigate(['/client-informations']);
+      this.router.navigate(['/client-information']);
       this.clientManagementForm.reset();
     }
   }
 
   public createClient(autoId: number, clientName: string) {
-    const data = {
-      id: autoId,
-      name: clientName,
-    };
-    this.service.createClients(data).subscribe();
+    this.store.dispatch(
+      setClientData({
+        id: autoId,
+        name: clientName,
+      } as unknown as ClientInformationType)
+    );
   }
 
   public createClientDetails(
@@ -86,22 +92,23 @@ export class ClientManagementFirstComponent implements OnInit {
     clientDesignation: string,
     clientDepartment: string
   ) {
-    const data = {
-      clientId: autoId,
-      designation: clientDesignation,
-      department: clientDepartment,
-    };
-    this.service.createClientDetails(data).subscribe();
+    this.store.dispatch(
+      setClientDetails({
+        clientId: autoId,
+        designation: clientDesignation,
+        department: clientDepartment,
+      } as unknown as ClientDetailsType)
+    );
   }
 
   public createLinkedProgram(autoId: number, programsList: number[]) {
     [...programsList].map((res) => {
-      const data = {
-        clientId: autoId,
-        programId: res,
-      };
-      this.service.createLinkedProgram(data).subscribe();
-      return;
+      this.store.dispatch(
+        setLinkedProgram({
+          clientId: autoId,
+          programId: res,
+        } as unknown as LinkedProgramType)
+      );
     });
   }
 }

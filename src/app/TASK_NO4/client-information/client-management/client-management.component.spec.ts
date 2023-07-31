@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ClientManagementFirstComponent } from './client-management.component';
+import { ClientManagementComponent } from './client-management.component';
 
 describe('ClientManagementComponent', () => {
-  let component: ClientManagementFirstComponent;
-  let fixture: ComponentFixture<ClientManagementFirstComponent>;
+  let component: ClientManagementComponent;
+  let fixture: ComponentFixture<ClientManagementComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ClientManagementFirstComponent],
+      declarations: [ClientManagementComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ClientManagementFirstComponent);
+    fixture = TestBed.createComponent(ClientManagementComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

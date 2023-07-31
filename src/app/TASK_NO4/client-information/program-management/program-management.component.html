@@ -13,7 +13,7 @@
         <a class="nav-link">
           <button
             class="btn btn-danger text-white"
-            routerLink="/client-informations"
+            routerLink="/client-information"
           >
             Back
           </button></a
@@ -38,7 +38,13 @@
               class="text-danger"
               *ngIf="formControlsHandle['name'].hasError('required')"
             >
-            Name is required
+              Name is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['name'].hasError('pattern')"
+            >
+              Only Accepts Alphabets
             </div>
           </div>
         </div>
@@ -49,6 +55,6 @@
     </form>
   </div>
 </div>
-<app-program-management-detail
+<app-program-management-details
   #programDetails
-></app-program-management-detail>
+></app-program-management-details>

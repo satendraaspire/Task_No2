@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ClientInformationComponent } from './client-information.component';
+import { ClientInformationFirstComponent } from './client-information.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { ProgramManagementDetailsComponent } from './program-management/program-management-details/program-management-details.component';
+import { ProgramManagementFirstDetailComponent } from './program-management/program-management-details/program-management-details.component';
 
 @NgModule({
-  declarations: [ClientInformationComponent, ProgramManagementDetailsComponent],
+  declarations: [ClientInformationFirstComponent, ProgramManagementFirstDetailComponent],
   imports: [CommonModule, HttpClientModule, BrowserModule, RouterModule],
-  exports: [ProgramManagementDetailsComponent],
+  exports: [ProgramManagementFirstDetailComponent],
 })
-export class ClientFormationModule {}
+export class ClientFormationFirstModule {}

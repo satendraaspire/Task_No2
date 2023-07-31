@@ -21,15 +21,16 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ConcertBookingService } from './_service/concert-booking.service';
 import { BookingDetailsComponent } from './concerts-booking-form/booking-details/booking-details.component';
 import { MaskNumberDirective } from './_directive/mask-number.directive';
-import { ClientFormationModule } from './TASK_NO3/client-information/client-formation.module';
-import { ClientManagementComponent } from './TASK_NO3/client-information/client-management/client-management.component';
-import { ProgramManagementComponent } from './TASK_NO3/client-information/program-management/program-management.component';
 
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
-
+import { ClientFormationModule } from './TASK_NO4/client-information/client-formation.module';
+import { ClientManagementComponent } from './TASK_NO4/client-information/client-management/client-management.component';
+import { ProgramManagementComponent } from './TASK_NO4/client-information/program-management/program-management.component';
+import { ClientFormationFirstModule } from './TASK_NO3/client-information/client-formation.module';
+import { ClientManagementFirstComponent } from './TASK_NO3/client-information/client-management/client-management.component';
+import { ProgramManagementFirstComponent } from './TASK_NO3/client-information/program-management/program-management.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MaskNumberDirective,
     ClientManagementComponent,
     ProgramManagementComponent,
+    ClientManagementFirstComponent,
+    ProgramManagementFirstComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     BrowserAnimationsModule,
     MatInputModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ClientFormationFirstModule,
   ],
   providers: [ConcertBookingService],
   bootstrap: [AppComponent],
