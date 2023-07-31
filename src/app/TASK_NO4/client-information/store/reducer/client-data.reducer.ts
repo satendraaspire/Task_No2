@@ -8,7 +8,7 @@ import {
   clientDetailsData,
   clientLinkedProgramsData,
   clientsData,
-} from '../constant/clients-data.constant';
+} from '../constant/clients-initial-data.constant';
 import {
   ClientInformationType,
   ClientDetailsType,
@@ -23,7 +23,6 @@ export const linkedProgramInitialState: LinkedProgramType[] =
 export const employeeReducer = createReducer<ClientInformationType[]>(
   initialState,
   on(setClientData, (state, { type, ...rest }) => {
-    console.log(state);
     return [...state, { ...rest }];
   })
 );
@@ -31,7 +30,6 @@ export const employeeReducer = createReducer<ClientInformationType[]>(
 export const clientDetailsReducer = createReducer<ClientDetailsType[]>(
   clientDetailsInitialState,
   on(setClientDetails, (state, { type, ...rest }) => {
-    console.log('store data', { ...state, ...rest });
     return [...state, { ...rest }];
   })
 );
@@ -39,7 +37,6 @@ export const clientDetailsReducer = createReducer<ClientDetailsType[]>(
 export const linkedProgramReducer = createReducer<LinkedProgramType[]>(
   linkedProgramInitialState,
   on(setLinkedProgram, (state, { type, ...rest }) => {
-    console.log('store data', { ...state, ...rest });
     return [...state, { ...rest }];
   })
 );

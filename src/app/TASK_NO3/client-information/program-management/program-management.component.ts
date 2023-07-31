@@ -12,7 +12,6 @@ import { ReusableService } from '../../_reusable-service/reusable-service.servic
 })
 export class ProgramManagementFirstComponent implements OnInit {
   public programManagementForm!: FormGroup;
-  public isSubmitted = false;
 
   @ViewChild('programDetails')
   programDetails!: ProgramManagementFirstDetailComponent;
@@ -38,10 +37,8 @@ export class ProgramManagementFirstComponent implements OnInit {
 
   public onSubmit() {
     if (!this.programManagementForm.valid) {
-      this.isSubmitted = true;
       this.toastr.error('Invalid Form');
     } else {
-      this.isSubmitted = false;
       this.service
         .createProgram({ ...this.programManagementForm.value })
         .subscribe(() => {
