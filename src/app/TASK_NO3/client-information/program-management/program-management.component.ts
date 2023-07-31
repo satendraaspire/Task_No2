@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { ClientInformationService } from '../../_service/client-information.service';
 import { ProgramManagementDetailsComponent } from './program-management-details/program-management-details.component';
+import { ReusableService } from '../../_reusable-service/reusable-service.service';
 
 @Component({
   selector: 'app-program-management',
@@ -18,7 +19,8 @@ export class ProgramManagementComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-    private service: ClientInformationService
+    private service: ClientInformationService,
+    public reusableService: ReusableService
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class ProgramManagementComponent implements OnInit {
       this.service
         .createProgram({ ...this.programManagementForm.value })
         .subscribe(() => {
+          this.reusableService.setProgramData([]);
           this.programDetails.getProgramDetails();
           this.toastr.success('Program Added');
           this.programManagementForm.reset();

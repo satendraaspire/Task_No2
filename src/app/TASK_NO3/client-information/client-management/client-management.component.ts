@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DesignationValues } from '../client-information.constant';
 import { Router } from '@angular/router';
 import { ReusableService } from '../../_reusable-service/reusable-service.service';
+import { random } from 'src/app/concerts-booking-form/concert-booking.constant';
 
 @Component({
   selector: 'app-client-management',
@@ -63,15 +64,15 @@ export class ClientManagementComponent implements OnInit {
       this.toastr.error('Invalid Form');
     } else {
       this.isSubmitted = false;
-      const autoID = Math.floor(1000 * Math.random());
+      const autoID = Math.floor(random.value * Math.random());
       const { clientName, department, designation, programs } =
         this.clientManagementForm.value;
       this.createClient(autoID, clientName);
       this.createClientDetails(autoID, designation, department);
       this.createLinkedProgram(autoID, programs);
       this.toastr.success('Submit Successfully');
-      this.clientManagementForm.reset();
       this.router.navigate(['/client-information']);
+      this.clientManagementForm.reset();
     }
   }
 

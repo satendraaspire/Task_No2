@@ -77,6 +77,89 @@
         </div>
 
         <div class="col-md-4 col-sm-12">
+          <mat-label>Designation</mat-label>
+          <div>
+            <mat-form-field
+              [ngClass]="{
+                'is-invalid':
+                  (formControlsHandle['designation'].dirty ||
+                    formControlsHandle['designation'].touched ||
+                    isSubmitted) &&
+                  formControlsHandle['designation'].errors
+              }"
+            >
+              <mat-select
+                formControlName="designation"
+                name="designation"
+                placeholder="Select Designation"
+              >
+                <mat-option
+                  *ngFor="let client of designationValues"
+                  [value]="client"
+                >
+                  {{ client }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div
+              *ngIf="
+                formControlsHandle['designation'].errors &&
+                (formControlsHandle['designation'].dirty ||
+                  formControlsHandle['designation'].touched ||
+                  isSubmitted)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="formControlsHandle['designation'].errors['required']">
+                Designation is required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <mat-label>Programs</mat-label>
+          <div>
+            <mat-form-field
+              [ngClass]="{
+                'is-invalid':
+                  (formControlsHandle['programs'].dirty ||
+                    formControlsHandle['programs'].touched ||
+                    isSubmitted) &&
+                  formControlsHandle['programs'].errors
+              }"
+            >
+              <mat-select
+                formControlName="programs"
+                name="programs"
+                placeholder="Select programs"
+                multiple
+              >
+                <mat-option
+                  *ngFor="let client of programDropDown"
+                  [value]="client.id"
+                >
+                  {{ client.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div
+              *ngIf="
+                formControlsHandle['programs'].errors &&
+                (formControlsHandle['programs'].dirty ||
+                  formControlsHandle['programs'].touched ||
+                  isSubmitted)
+              "
+              class="invalid-feedback"
+            >
+              <div *ngIf="formControlsHandle['programs'].errors['required']">
+                Programs is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 
+        <div class="col-md-4 col-sm-12">
           <label for="designation" class="form-label">Designation</label>
           <select
             class="form-control"
@@ -107,9 +190,9 @@
               Designation is required
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <div class="col-md-4 col-sm-12 mt-3">
+        <!-- <div class="col-md-4 col-sm-12 mt-3">
           <label for="Programs" class="form-label">Programs</label>
           <select
             class="form-control"
@@ -144,7 +227,7 @@
               Programs is required
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="mt-5 btn-class">
         <button class="btn btn-dark" (click)="onSubmit()">Add Client</button>

@@ -10,3 +10,6 @@ export const tickets = {
   midLength: 5,
   lastLength: 12,
 };
+export const random = {
+  value: 1000,
+};

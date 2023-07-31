@@ -61,9 +61,9 @@ export class ClientInformationComponent implements OnInit {
 
   public getLinkedPrograms(id: string | number) {
     let programListArray: string[] = [];
-    this.clientLinkedProgram.filter((item) => {
+    this.clientLinkedProgram.map((item) => {
       if (item.clientId === id) {
-        this.clientProgram.map((value) => {
+        this.clientProgram.find((value) => {
           if (item.programId === value.id) {
             return programListArray.push(value.name);
           } else {
@@ -72,11 +72,10 @@ export class ClientInformationComponent implements OnInit {
         });
       }
     });
-
     return programListArray.join('\n');
   }
 
-  public getColorStyle(id:number){
-    return this.getLinkedPrograms(id)! ? 'gray' : 'red'
+  public getColorStyle(id: number) {
+    return this.getLinkedPrograms(id)! ? 'gray' : 'red';
   }
 }

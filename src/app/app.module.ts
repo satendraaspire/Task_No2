@@ -25,6 +25,12 @@ import { ClientFormationModule } from './TASK_NO3/client-information/client-form
 import { ClientManagementComponent } from './TASK_NO3/client-information/client-management/client-management.component';
 import { ProgramManagementComponent } from './TASK_NO3/client-information/program-management/program-management.component';
 
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,6 +50,9 @@ import { ProgramManagementComponent } from './TASK_NO3/client-information/progra
     ClientFormationModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+    MatInputModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [ConcertBookingService],
   bootstrap: [AppComponent],
