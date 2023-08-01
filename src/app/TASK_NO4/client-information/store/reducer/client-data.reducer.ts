@@ -22,21 +22,21 @@ export const linkedProgramInitialState: LinkedProgramType[] =
 
 export const employeeReducer = createReducer<ClientInformationType[]>(
   initialState,
-  on(setClientData, (state, { type, ...rest }) => {
+  on(setClientData, (state, { ...rest }) => {
     return [...state, { ...rest }];
   })
 );
 
 export const clientDetailsReducer = createReducer<ClientDetailsType[]>(
   clientDetailsInitialState,
-  on(setClientDetails, (state, { type, ...rest }) => {
+  on(setClientDetails, (state, { ...rest }) => {
     return [...state, { ...rest }];
   })
 );
 
 export const linkedProgramReducer = createReducer<LinkedProgramType[]>(
   linkedProgramInitialState,
-  on(setLinkedProgram, (state, { type, ...rest }) => {
+  on(setLinkedProgram, (state, {...rest }) => {
     return [...state, { ...rest }];
   })
 );

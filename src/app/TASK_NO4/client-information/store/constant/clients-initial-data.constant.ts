@@ -1,3 +1,5 @@
+import { ClientInformationType, ClientDetailsType, LinkedProgramType } from "../../client-information.interface";
+
 export const clientsData = [
   {
     id: 1,

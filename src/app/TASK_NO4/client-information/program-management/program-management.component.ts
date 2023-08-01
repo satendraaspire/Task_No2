@@ -50,6 +50,7 @@ export class ProgramManagementComponent implements OnInit {
         } as ClientInformationType)
       );
       this.toastr.success('Added Successfully');
+      this.programManagementForm.reset();
     }
   }
 }

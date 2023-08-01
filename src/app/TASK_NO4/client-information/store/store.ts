@@ -11,18 +11,7 @@ import {
   linkedProgramReducer,
 } from './reducer/client-data.reducer';
 import { programsReducer } from './reducer/program-management.reducer';
-import {
-  ClientInformationType,
-  ClientDetailsType,
-  LinkedProgramType,
-} from '../client-information.interface';
-
-export interface RootState {
-  clientData: ClientInformationType[];
-  clientDetailsData: ClientDetailsType[];
-  linkedProgramData: LinkedProgramType[];
-  programData: ClientInformationType[];
-}
+import { RootState } from './interface/client-data.interface';
 
 export const reducers: ActionReducerMap<RootState> = {
   clientData: employeeReducer,
@@ -45,9 +34,9 @@ const combinedReducers = (
         }
       }
     }
-    const nextState = reducer(state, action);
-    sessionStorage.setItem('store', JSON.stringify(nextState));
-    return nextState;
+    const combinedState = reducer(state, action);
+    sessionStorage.setItem('store', JSON.stringify(combinedState));
+    return combinedState;
   };
 };
 
