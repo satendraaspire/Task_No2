@@ -31,7 +31,12 @@ import { ProgramManagementComponent } from './TASK_NO4/client-information/progra
 import { ClientFormationFirstModule } from './TASK_NO3/client-information/client-formation.module';
 import { ClientManagementFirstComponent } from './TASK_NO3/client-information/client-management/client-management.component';
 import { ProgramManagementFirstComponent } from './TASK_NO3/client-information/program-management/program-management.component';
-
+import { ClientFormationSecondModule } from './TASK_NO6/client-information/client-formation.module';
+import { ClientManagementSecondComponent } from './TASK_NO6/client-information/client-management/client-management.component';
+import { ProgramManagementSecondComponent } from './TASK_NO6/client-information/program-management/program-management.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +47,9 @@ import { ProgramManagementFirstComponent } from './TASK_NO3/client-information/p
     ClientManagementComponent,
     ProgramManagementComponent,
     ClientManagementFirstComponent,
-    ProgramManagementFirstComponent
+    ProgramManagementFirstComponent,
+    ClientManagementSecondComponent,
+    ProgramManagementSecondComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +64,10 @@ import { ProgramManagementFirstComponent } from './TASK_NO3/client-information/p
     MatSelectModule,
     MatFormFieldModule,
     ClientFormationFirstModule,
+    ClientFormationSecondModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule
   ],
   providers: [ConcertBookingService],
   bootstrap: [AppComponent],

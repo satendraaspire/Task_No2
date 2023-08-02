@@ -1,0 +1,61 @@
+<div class="card className">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-between align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link"> <strong class="text-dark">Login From</strong></a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body text-center">
+    <form [formGroup]="loginForm">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <label for="name" class="form-label">Name*</label>
+          <input
+            type="text"
+            class="form-control custom_input"
+            placeholder="Enter Your Name"
+            formControlName="userName"
+          />
+          <div *ngIf="formControlsHandle['userName'].touched">
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['userName'].hasError('required')"
+            >
+              Name is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['userName'].hasError('pattern')"
+            >
+              Only Accepts Alphabets
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 col-sm-12 mt-3">
+          <label for="password" class="form-label">Password*</label>
+          <input
+            type="text"
+            class="form-control custom_input"
+            placeholder="Enter Password"
+            formControlName="password"
+          />
+          <div *ngIf="formControlsHandle['password'].touched">
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['password'].hasError('required')"
+            >
+              Password is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 btn-class">
+        <button class="btn btn-dark" (click)="onSubmit()">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

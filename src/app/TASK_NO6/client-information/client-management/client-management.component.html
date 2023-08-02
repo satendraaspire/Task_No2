@@ -1,0 +1,120 @@
+<div class="card className">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-between align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link">
+          <strong class="text-dark">Client Management</strong></a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    <form [formGroup]="clientManagementForm">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <label for="clientName" class="form-label">Name*</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Your Name"
+            formControlName="clientName"
+          />
+          <div *ngIf="formControlsHandle['clientName'].touched">
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['clientName'].hasError('required')"
+            >
+              Name is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['clientName'].hasError('pattern')"
+            >
+              Only Accepts Alphabets
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <label for="lName" class="form-label">Department*</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Your Department"
+            formControlName="department"
+          />
+          <div *ngIf="formControlsHandle['department'].touched">
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['department'].hasError('required')"
+            >
+              Department is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <mat-label>Designation*</mat-label>
+          <div>
+            <mat-form-field>
+              <mat-select
+                formControlName="designation"
+                name="designation"
+                placeholder="Select Designation"
+              >
+                <mat-option
+                  *ngFor="let client of designationValues"
+                  [value]="client"
+                >
+                  {{ client }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="formControlsHandle['designation'].touched">
+              <div
+                class="text-danger"
+                *ngIf="formControlsHandle['designation'].hasError('required')"
+              >
+                Designation is required
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12 mt-3">
+          <mat-label>Programs*</mat-label>
+          <div>
+            <mat-form-field>
+              <mat-select
+                formControlName="programs"
+                name="programs"
+                placeholder="Select programs"
+                multiple
+              >
+                <mat-option
+                  *ngFor="let client of programDropDown"
+                  [value]="client.id"
+                >
+                  {{ client.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div *ngIf="formControlsHandle['programs'].touched">
+              <div
+                class="text-danger"
+                *ngIf="formControlsHandle['programs'].hasError('required')"
+              >
+                Programs is required
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-5 btn-class">
+        <button class="btn btn-dark" (click)="onSubmit()">Add Client</button>
+      </div>
+    </form>
+  </div>
+</div>

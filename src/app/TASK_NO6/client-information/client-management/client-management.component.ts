@@ -21,7 +21,7 @@ import {
   templateUrl: './client-management.component.html',
   styleUrls: ['./client-management.component.css'],
 })
-export class ClientManagementComponent implements OnInit {
+export class ClientManagementSecondComponent implements OnInit {
   public clientManagementForm!: FormGroup;
   public programDropDown!: ClientInformationType[];
   public designationValues = DesignationValues;
@@ -50,7 +50,7 @@ export class ClientManagementComponent implements OnInit {
 
     this.clientDetails();
   }
-  
+
   public clientDetails() {
     this.store
       .select((store) => store.programData)
@@ -74,7 +74,7 @@ export class ClientManagementComponent implements OnInit {
       this.createClientDetails(autoID, designation, department);
       this.createLinkedProgram(autoID, programs);
       this.toastr.success('Submit Successfully');
-      this.router.navigate(['/client-information']);
+      this.router.navigate(['/clients-informations']);
       this.clientManagementForm.reset();
     }
   }

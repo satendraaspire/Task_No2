@@ -117,15 +117,5 @@ export const clientLinkedProgramsData = [
     id: 8,
     clientId: 1,
     programId: 7,
-  },
-  {
-    clientId: 534,
-    programId: 4,
-    id: 9,
-  },
-  {
-    clientId: 534,
-    programId: 5,
-    id: 10,
-  },
+  }
 ];

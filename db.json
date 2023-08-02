@@ -158,5 +158,16 @@
       "department": "sing",
       "id": 6
     }
+  ],
+  
+  "registerClients": [
+    {
+      "username": "admin",
+      "password": "admin@123"
+    },
+    {
+      "username": "tenant",
+      "password": "tenant@123"
+    }
   ]
 }

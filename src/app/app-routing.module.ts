@@ -8,18 +8,31 @@ import { ProgramManagementComponent } from './TASK_NO4/client-information/progra
 import { ClientInformationFirstComponent } from './TASK_NO3/client-information/client-information.component';
 import { ClientManagementFirstComponent } from './TASK_NO3/client-information/client-management/client-management.component';
 import { ProgramManagementFirstComponent } from './TASK_NO3/client-information/program-management/program-management.component';
+import { ClientInformationSecondComponent } from './TASK_NO6/client-information/client-information.component';
+import { ClientManagementSecondComponent } from './TASK_NO6/client-information/client-management/client-management.component';
+import { ProgramManagementSecondComponent } from './TASK_NO6/client-information/program-management/program-management.component';
+import { LoginFormComponent } from './TASK_NO6/client-information/forms/login-form.component';
+import { AuthGuard } from './TASK_NO6/client-information/_service/guards/auth.guard';
+import { TenantGuard } from './TASK_NO6/client-information/_service/guards/tenant.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'concert-booking-form',
+    redirectTo: 'login-form',
     pathMatch: 'full',
   },
+  {
+    path: 'login-form',
+    component: LoginFormComponent,
+    title: 'Login Form',
+  },
+
   {
     path: 'concert-booking-form',
     component: BookingFormComponent,
     title: 'Form Booking',
   },
+
   {
     path: 'client-informations',
     component: ClientInformationFirstComponent,
@@ -34,6 +47,24 @@ const routes: Routes = [
     path: 'program-managements',
     component: ProgramManagementFirstComponent,
     title: 'Program Managements',
+  },
+
+  {
+    path: 'clients-informations',
+    component: ClientInformationSecondComponent,
+    title: 'client-onformations',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'clients-managements',
+    component: ClientManagementSecondComponent,
+    title: 'Client Managements',
+  },
+  {
+    path: 'programs-managements',
+    component: ProgramManagementSecondComponent,
+    title: 'Program Managements',
+    canActivate: [TenantGuard],
   },
 
   {
