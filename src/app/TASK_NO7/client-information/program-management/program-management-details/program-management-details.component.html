@@ -1,0 +1,50 @@
+<div class="card className mt-5">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-between align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link">
+          <strong class="text-dark">Client Program Details</strong></a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    <div class="table-responsive" *ngIf="programDetails">
+      <div>
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Program Name
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="linkedClient">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Linked Clients
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <p (click)="openProgramDialog(element)" style="cursor: pointer">
+                {{ element.linkedClient }}
+              </p>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+    <ng-template #notfound>
+      <h3>Data not found</h3>
+    </ng-template>
+  </div>
+</div>

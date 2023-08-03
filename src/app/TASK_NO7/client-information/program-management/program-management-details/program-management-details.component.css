@@ -1,0 +1,10 @@
+.className {
+  margin: 19px 60px;
+  border: 1px solid;
+}
+tr {
+  background: cadetblue;
+}
+.table {
+  --bs-table-bg: auto !important;
+}

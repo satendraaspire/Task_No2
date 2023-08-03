@@ -37,6 +37,11 @@ import { ProgramManagementSecondComponent } from './TASK_NO6/client-information/
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { ClientFormationSevenModule } from './TASK_NO7/client-information/client-formation.module';
+import { ProgramManagementSevenComponent } from './TASK_NO7/client-information/program-management/program-management.component';
+import { ClientManagementSevenComponent } from './TASK_NO7/client-information/client-management/client-management.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +55,8 @@ import { MatSortModule } from '@angular/material/sort';
     ProgramManagementFirstComponent,
     ClientManagementSecondComponent,
     ProgramManagementSecondComponent,
+    ClientManagementSevenComponent,
+    ProgramManagementSevenComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +74,10 @@ import { MatSortModule } from '@angular/material/sort';
     ClientFormationSecondModule,
     MatPaginatorModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    ClientFormationSevenModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   providers: [ConcertBookingService],
   bootstrap: [AppComponent],

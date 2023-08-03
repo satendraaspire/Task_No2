@@ -1,0 +1,60 @@
+<div class="card className">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-between align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link">
+          <strong class="text-dark">Program Management</strong></a
+        >
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link">
+          <button
+            class="btn btn-danger text-white"
+            routerLink="/clients-informationss"
+          >
+            Back
+          </button></a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body text-center">
+    <form [formGroup]="programManagementForm">
+      <div class="row">
+        <div class="col-md-12 col-sm-12">
+          <label for="name" class="form-label">Name*</label>
+          <input
+            type="text"
+            class="form-control custom_input"
+            placeholder="Enter Program Name"
+            formControlName="name"
+          />
+          <div *ngIf="formControlsHandle['name'].touched">
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['name'].hasError('required')"
+            >
+              Name is required
+            </div>
+            <div
+              class="text-danger"
+              *ngIf="formControlsHandle['name'].hasError('pattern')"
+            >
+              Only Accepts Alphabets
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-3 btn-class">
+        <button class="btn btn-dark" (click)="onSubmit()">Add Program</button>
+      </div>
+    </form>
+  </div>
+</div>
+<app-programs-managements-details
+  #programDetails
+></app-programs-managements-details>

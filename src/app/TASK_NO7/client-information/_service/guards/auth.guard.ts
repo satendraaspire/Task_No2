@@ -6,9 +6,7 @@ import { ClientService } from '../client.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-
   constructor(private router: Router, private service: ClientService) {}
-  
   canActivate() {
     const value = this.service.userPermission;
     if (value) {

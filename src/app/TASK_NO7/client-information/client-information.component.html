@@ -1,0 +1,123 @@
+<div class="card className mt-5">
+  <div class="card-header">
+    <ul
+      class="nav nav-pills card-header-pills justify-content-start align-items-center"
+    >
+      <li class="nav-item">
+        <a class="nav-link">
+          <strong class="text-dark">Client information</strong></a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="nav-link">
+          <button class="btn btn-info" routerLink="/clients-managementss">
+            Client Management
+          </button></a
+        >
+      </li>
+      <li class="nav-item" *ngIf="this.userValue === 'admin'">
+        <a class="nav-link">
+          <button class="btn btn-info" routerLink="/programs-managementss">
+            Program Management
+          </button></a
+        >
+      </li>
+    </ul>
+  </div>
+
+  <div class="card-body">
+    <div
+      class="table_class table-responsive"
+      *ngIf="clientsList; else notfound"
+    >
+      <div>
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Client Name
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="designation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Designation
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Department
+            </th>
+          </ng-container>
+
+          <ng-container matColumnDef="linkedPrgram">
+            <th mat-header-cell *matHeaderCellDef>Linked Programs</th>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        </table>
+
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+              <input type="text" (keyup)="applyFilter($event)" />
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="designation">
+            <th mat-header-cell *matHeaderCellDef="let element">
+              <input type="text" (keyup)="applyFilter($event)" />
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.designation }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef>
+              <input type="text" (keyup)="applyFilter($event)" />
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.department }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="linkedPrgram">
+            <th mat-header-cell *matHeaderCellDef>
+              <input type="text" (keyup)="applyFilter($event)" />
+            </th>
+            <td mat-cell *matCellDef="let element">
+              <pre>{{ element.linkedPrgram }}</pre>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="let row; columns: displayedColumns"
+            [ngStyle]="{
+              'background-color': getColorStyle(row.id) ? 'gray' : 'red'
+            }"
+          ></tr>
+        </table>
+
+        <mat-paginator #paginator [pageSize]="3" [pageSizeOptions]="[2, 5, 10]">
+        </mat-paginator>
+      </div>
+    </div>
+    <ng-template #notfound>
+      <h3>Data not found</h3>
+    </ng-template>
+  </div>
+</div>

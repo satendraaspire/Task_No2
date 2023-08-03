@@ -5,9 +5,7 @@ import {
   ClientInformationType,
   LinkedProgramType,
   ClientDetailsType,
-  ClientCombinedArrays,
 } from './client-information.interface';
-import { ReusableServices } from './_service/_reusable-service/reusable.service';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -18,7 +16,7 @@ import { ClientService } from './_service/client.service';
   templateUrl: './client-information.component.html',
   styleUrls: ['./client-information.component.css'],
 })
-export class ClientInformationSecondComponent implements OnInit, AfterViewInit {
+export class ClientInformationSevenComponent implements OnInit, AfterViewInit {
   public clientsList!: ClientInformationType[];
   public clientProgram!: ClientInformationType[];
   public clientLinkedProgram!: LinkedProgramType[];
@@ -36,7 +34,6 @@ export class ClientInformationSecondComponent implements OnInit, AfterViewInit {
       linkedProgramData: LinkedProgramType[];
       programData: ClientInformationType[];
     }>,
-    private reusableServices: ReusableServices,
     private service: ClientService
   ) {}
 

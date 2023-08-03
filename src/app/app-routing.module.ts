@@ -14,6 +14,10 @@ import { ProgramManagementSecondComponent } from './TASK_NO6/client-information/
 import { LoginFormComponent } from './TASK_NO6/client-information/forms/login-form.component';
 import { AuthGuard } from './TASK_NO6/client-information/_service/guards/auth.guard';
 import { TenantGuard } from './TASK_NO6/client-information/_service/guards/tenant.guard';
+import { LoginGuard } from './TASK_NO6/client-information/_service/guards/login.guard';
+import { ClientManagementSevenComponent } from './TASK_NO7/client-information/client-management/client-management.component';
+import { ProgramManagementSevenComponent } from './TASK_NO7/client-information/program-management/program-management.component';
+import { ClientInformationSevenComponent } from './TASK_NO7/client-information/client-information.component';
 
 const routes: Routes = [
   {
@@ -25,12 +29,29 @@ const routes: Routes = [
     path: 'login-form',
     component: LoginFormComponent,
     title: 'Login Form',
+    canActivate: [LoginGuard],
   },
 
   {
     path: 'concert-booking-form',
     component: BookingFormComponent,
     title: 'Form Booking',
+  },
+
+  {
+    path: 'client-information',
+    component: ClientInformationComponent,
+    title: 'client-onformation',
+  },
+  {
+    path: 'client-management',
+    component: ClientManagementComponent,
+    title: 'Client Management',
+  },
+  {
+    path: 'program-management',
+    component: ProgramManagementComponent,
+    title: 'Program Management',
   },
 
   {
@@ -68,20 +89,23 @@ const routes: Routes = [
   },
 
   {
-    path: 'client-information',
-    component: ClientInformationComponent,
-    title: 'client-onformation',
+    path: 'clients-informationss',
+    component: ClientInformationSevenComponent,
+    title: 'client-Ionformationss',
+    canActivate: [AuthGuard],
   },
   {
-    path: 'client-management',
-    component: ClientManagementComponent,
-    title: 'Client Management',
+    path: 'clients-managementss',
+    component: ClientManagementSevenComponent,
+    title: 'Client Managements',
   },
   {
-    path: 'program-management',
-    component: ProgramManagementComponent,
-    title: 'Program Management',
+    path: 'programs-managementss',
+    component: ProgramManagementSevenComponent,
+    title: 'Program Managements',
+    canActivate: [TenantGuard],
   },
+
   {
     path: '**',
     component: PageNotFoundComponent,

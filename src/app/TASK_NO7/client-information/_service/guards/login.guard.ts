@@ -5,17 +5,16 @@ import { ClientService } from '../client.service';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
-
+export class LoginGuard implements CanActivate {
   constructor(private router: Router, private service: ClientService) {}
-  
+
   canActivate() {
     const value = this.service.userPermission;
     if (value) {
-      return true;
-    } else {
-      this.router.navigate(['/login-form']);
+      this.router.navigate(['/clients-informationss']);
       return false;
+    } else {
+      return true;
     }
   }
 }
