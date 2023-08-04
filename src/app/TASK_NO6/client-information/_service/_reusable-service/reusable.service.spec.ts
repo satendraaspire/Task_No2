@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ReusableService } from './reusable.service';
+import { ReusableServices } from './reusable.service';
 
-describe('ReusableService', () => {
-  let service: ReusableService;
+describe('ReusableServices', () => {
+  let service: ReusableServices;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ReusableService);
+    service = TestBed.inject(ReusableServices);
   });
 
   it('should be created', () => {

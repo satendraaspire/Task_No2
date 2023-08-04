@@ -11,13 +11,13 @@ import { ProgramManagementFirstComponent } from './TASK_NO3/client-information/p
 import { ClientInformationSecondComponent } from './TASK_NO6/client-information/client-information.component';
 import { ClientManagementSecondComponent } from './TASK_NO6/client-information/client-management/client-management.component';
 import { ProgramManagementSecondComponent } from './TASK_NO6/client-information/program-management/program-management.component';
-import { LoginFormComponent } from './TASK_NO6/client-information/forms/login-form.component';
 import { AuthGuard } from './TASK_NO6/client-information/_service/guards/auth.guard';
 import { TenantGuard } from './TASK_NO6/client-information/_service/guards/tenant.guard';
 import { LoginGuard } from './TASK_NO6/client-information/_service/guards/login.guard';
 import { ClientManagementSevenComponent } from './TASK_NO7/client-information/client-management/client-management.component';
 import { ProgramManagementSevenComponent } from './TASK_NO7/client-information/program-management/program-management.component';
 import { ClientInformationSevenComponent } from './TASK_NO7/client-information/client-information.component';
+import { LoginFormSevenComponent } from './TASK_NO7/client-information/forms/login-form.component';
 
 const routes: Routes = [
   {
@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'login-form',
-    component: LoginFormComponent,
+    component: LoginFormSevenComponent,
     title: 'Login Form',
     canActivate: [LoginGuard],
   },

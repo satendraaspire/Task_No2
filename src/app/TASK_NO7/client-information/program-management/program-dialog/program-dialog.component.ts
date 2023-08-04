@@ -67,7 +67,7 @@ export class ProgramDialogComponent implements OnInit, AfterViewInit {
     this.linkedProgram
       .filter((link) => this.data.linkedClient.id === link.programId)
       .map((res) => {
-        this.clientsList.map((repo) => {
+        this.clientsList.find((repo) => {
           if (res.clientId === repo.id)
             programListArray.push({ name: repo.name });
         });

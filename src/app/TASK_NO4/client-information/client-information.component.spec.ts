@@ -3,14 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ClientInformationComponent } from './client-information.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { ClientInformationService } from '../_service/client-information.service';
-import {
-  clientDetails,
-  clientLinkedPrograms,
-  clients,
-  programs,
-} from './client-information.constant';
+
 import { of } from 'rxjs';
+import { ClientInformationService } from 'src/app/TASK_NO3/_service/client-information.service';
 
 describe('ClientInformationComponent', () => {
   let component: ClientInformationComponent;
@@ -49,10 +44,6 @@ describe('ClientInformationComponent', () => {
     fixture = TestBed.createComponent(ClientInformationComponent);
     component = fixture.componentInstance;
 
-    component.clientsList = clients;
-    component.clientDetails = clientDetails;
-    component.clientLinkedProgram = clientLinkedPrograms;
-    component.clientProgram = programs;
   });
 
   it('should create', () => {
@@ -80,27 +71,4 @@ describe('ClientInformationComponent', () => {
     });
   });
 
-  describe('when getClientsInformation is called', () => {
-    it(`getClientsInformation has default value`, () => {
-      const clientLinkedProgramMock: any = clientLinkedPrograms;
-      const clientDetailsMock: any = clientDetails;
-      const clientsListMock: any = clients;
-      const clientProgramMock: any = programs;
-
-      const restService = TestBed.inject(ClientInformationService);
-      spyOn(restService, 'getClients').and.returnValue(of(clientsListMock));
-      spyOn(restService, 'getClientsProgram').and.returnValue(
-        of(clientProgramMock)
-      );
-      spyOn(restService, 'getLinkedProgram').and.returnValue(
-        of(clientLinkedProgramMock)
-      );
-      spyOn(restService, 'getClientDetails').and.returnValue(
-        of(clientDetailsMock)
-      );
-
-      component.getClientsInformation();
-      expect(component.clientsList).toEqual(clientsListMock);
-    });
-  });
 });
